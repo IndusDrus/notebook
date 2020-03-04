@@ -1,7 +1,8 @@
 <template>
   <div id="app">
     
-  	<app-notelist></app-notelist>
+  	<app-notelist v-if="showNoteList" @openNote="openNote($event)" @openNewNote="openNewNote()"></app-notelist>
+  	<app-note v-if="showNote" :noteId="noteId" @showNotes="showNotes()"></app-note>
   	<app-modal></app-modal>
 
   </div>
@@ -14,11 +15,35 @@
 
 	export default {
 	  name: 'app',
+
 	  data () {
 	    return {
-	      
+	      noteId: null,
+	      showNoteList: true,
+	      showNote: false
 	    }
 	  },
+
+	  methods: {
+	  	openNote (noteId) {
+	  		this.noteId = noteId
+	  		this.showNoteList = false
+	  		this.showNote = true
+	  	},
+
+	  	openNewNote () {
+	  		this.noteId = null
+	  		this.showNoteList = false
+	  		this.showNote = true
+	  	},
+
+	  	showNotes () {
+	  		this.noteId = null
+	  		this.showNoteList = true
+	  		this.showNote = false
+	  	}
+	  },
+
 	  components: {
 	  	'app-note': Note,
 	  	'app-notelist': NoteList,

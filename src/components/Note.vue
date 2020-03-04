@@ -1,87 +1,154 @@
 <template>
-	<div class="note-wrapper">
+		<div class="note-wrapper">
 		
-		<div class="note-card">
+				<div class="note-card">
   	
-		  	<div class="card-sidebar">
-		  		<div class="card-sidebar-button card-sidebar-undo-button"></div>
-		  		<div class="card-sidebar-button card-sidebar-redo-button"></div>
-		  		<div class="card-sidebar-button card-sidebar-delete-btn"></div>
-		  	</div>
+		  			<div class="card-sidebar">
+					  		<div class="card-sidebar-button card-sidebar-undo-button">Отменить</div>
+					  		<div class="card-sidebar-button card-sidebar-redo-button">Повторить</div>
+					  		<div @click="onDeleteNoteButtonClick(note.id)" class="card-sidebar-button card-sidebar-delete-btn">Удалить заметку</div>
+		  			</div>
 
-	    	<div class="card-header">
-	    		<h2 class="card-title">Title</h2>
-	    		<input class="card-title-input" type="text"></input>
-	    		<div class="card-title-button-wrapper">
-	    			<div class="card-title-button card-title-edit-button"></div>
-	    			<div class="card-title-button card-title-confirm-button"></div>
-	    			<div class="card-title-button card-title-cancel-button"></div>
-	    		</div>
-	    	</div>
+			    	<div class="card-header">
+				    		<h2 v-if="!isTitleOpenToEdit" class="card-title">{{ note.title }}</h2>
+				    		<input v-if="isTitleOpenToEdit" v-model="note.title" type="text" class="card-title-input"></input>
+				    		<div class="card-title-button-wrapper">
+					    			<div v-if="!isTitleOpenToEdit"
+					    				   @click="onEditTitleButtonClick()"
+					    				   class="card-title-button card-title-edit-button">
+					    				 	Изменить(Заг)
+			    				 	</div>
+					    			<div v-if="isTitleOpenToEdit"
+					    					 @click="onConfirmTitleButtonClick()"
+					    					 class="card-title-button card-title-confirm-button">
+					    					Сохранить(Заг)
+				    				</div>
+					    			<div v-if="isTitleOpenToEdit"
+					    					 @click="onCancelTitleButtonClick()"
+					    					 class="card-title-button card-title-cancel-button">
+					    					Отменить(Заг)
+				    				</div>
+				    		</div>
+			    	</div>
 	    
-	    	<div class="card-body">
-	    		<div class="card-todo-list-wrapper">
-	    			<ul class="card-todo-list">
-	    				<li class="card-todo-list-item">
-	    					<input class="todo-checkbox" type="checkbox"></input>
-	    					<span class="todo-text">Todo text 1</span>
-	    					<div class="todo-item-button-wrapper">
-	    						<div class="todo-item-button todo-item-edit-button"></div>
-	    						<div class="todo-item-button todo-item-delete-button"></div>
-	    						<div class="todo-item-button todo-item-confirm-button"></div>
-	    						<div class="todo-item-button todo-item-cancel-button"></div>
-	    					</div>
-	    				</li>
-
-	    				<li class="card-todo-list-item">
-	    					<input class="todo-checkbox" type="checkbox"></input>
-	    					<span class="todo-text">Todo text 2</span>
-	    					<div class="todo-item-button-wrapper">
-	    						<div class="todo-item-button todo-item-edit-button"></div>
-	    						<div class="todo-item-button todo-item-delete-button"></div>
-	    						<div class="todo-item-button todo-item-confirm-button"></div>
-	    						<div class="todo-item-button todo-item-cancel-button"></div>
-	    					</div>
-	    				</li>
-
-	    				<li class="card-todo-list-item">
-	    					<input class="todo-checkbox" type="checkbox"></input>
-	    					<span class="todo-text">Todo text 3</span>
-	    					<div class="todo-item-button-wrapper">
-	    						<div class="todo-item-button todo-item-edit-button"></div>
-	    						<div class="todo-item-button todo-item-delete-button"></div>
-	    						<div class="todo-item-button todo-item-confirm-button"></div>
-	    						<div class="todo-item-button todo-item-cancel-button"></div>
-	    					</div>
-	    				</li>
-	    			</ul>
-	    		</div>
-	    		<div class="card-todo-add-item-button"></div>
-	    	</div>
+		    		<div class="card-body">
+		    				<div class="card-todo-list-wrapper">
+		    						<ul class="card-todo-list">
+		    								<app-todo-item v-for="todoItem in note.todoList" 
+		    															 :item="todoItem"
+    															 		 @deleteItem="deleteTodoItem(todoItem)"
+		    															 class="card-todo-item"></app-todo-item>
+										</ul>
+		    				</div>
+		    				<div @click="onAddTodoItemButtonClick()" class="card-todo-add-item-button">Добавить(ТДИ)</div>
+		    		</div>
 	    
-	    	<div class="card-footer">
-	    		<div class="card-footer-button card-footer-cancel-button"></div>
-	    		<div class="card-footer-button card-footer-save-button"></div>
-	    	</div>
+	    			<div class="card-footer">
+	    					<div @click="onCancelNoteChangesButtonClick()" class="card-footer-button card-footer-cancel-button">Отменить(Зам)</div>
+	    					<div @click="onConfirmNoteChangesButtonClick()" class="card-footer-button card-footer-save-button">Сохранить(Зам)</div>
+	    			</div>
 	  	
-	  	</div>
+	  		</div>
 
-	  	<app-modal></app-modal>
-
-	</div>
+		</div>
 </template>
 
 <script>
-  import ModalWindow from './ModalWindow.vue'
+	import TodoItem from './TodoItem.vue'
 
   export default {
-	data () {
-	  return {
-	      
-	  }
-	},
-	components: {
-		'app-modal': ModalWindow
-	}
+		props: ['noteId'],
+
+		data () {
+		  return {
+		  	isTitleOpenToEdit: false,
+		  	oldNoteTitle: null,
+		  	isTodoItemOpenToEdit: false,
+		  	oldTodoText: null,
+		  	initState: null
+		  }
+		},
+
+		created () {
+			this.initState = JSON.parse(JSON.stringify(this.$store.state))
+		},
+
+		computed: {
+			note () {
+				if (this.noteId != null) {
+
+					return this.$store.state.notes.filter(item => item.id === this.noteId)[0]
+				} else {
+					let note = {
+						id: 'note-' + this.getNextId(),
+						title: 'New Note',
+						todoList: null
+					}
+
+					return note
+				}
+
+			}
+		},
+
+		methods: {
+			getNextId () {
+				let nextId = this.$store.state.nextId
+				console.log(nextId)
+				this.$store.dispatch('getNextId')
+
+				return nextId
+			},
+
+			onUndoButtonClick () {},
+			onRedoButtonClick () {},
+
+			onDeleteNoteButtonClick (noteId) {		// удаление заметки
+				// вызвать окно с подтверждением
+				this.$store.dispatch('deleteNote', noteId)
+				this.$emit('showNotes')
+			},
+
+			onEditTitleButtonClick () {		// редактирование заголовка заметки
+				this.isTitleOpenToEdit = true
+				this.oldNoteTitle = this.note.title
+			},
+
+			onConfirmTitleButtonClick () {		// сохранение изменений заголовка заметки
+				this.isTitleOpenToEdit = false
+				this.oldNoteTitle = null
+
+				// внести изменения в хранилище для возможности отката изменений
+			},
+
+			onCancelTitleButtonClick () {		// отмена изменений заголовка заметки
+				this.isTitleOpenToEdit = false
+				this.note.title = this.oldNoteTitle
+				this.oldNoteTitle = null
+			},
+
+			deleteTodoItem (todoItem) {		// удаление элемента 'to-do' списка
+				this.$store.dispatch('deleteTodoItem', {id: this.noteId, item: todoItem})
+			},
+
+			onAddTodoItemButtonClick () {		// добавить элемент в 'to-do' список
+				this.$store.dispatch('addTodoItem', this.noteId)
+			},
+
+			onConfirmNoteChangesButtonClick () {		// сохранить все изменения в заметке
+				this.$emit('showNotes')
+			},
+
+			onCancelNoteChangesButtonClick () {		// отмена всех изменений в заметке
+				// вызвать окно с подтверждением
+				this.$store.replaceState(this.initState)
+				this.$emit('showNotes')
+			}
+
+		},
+
+		components: {
+			'app-todo-item': TodoItem
+		}
   }
 </script>
