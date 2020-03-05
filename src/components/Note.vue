@@ -14,7 +14,7 @@
 					  				 class="card-sidebar-button card-sidebar-redo-button">
 					  				Повторить
 				  			</div>
-					  		<div @click="onDeleteNoteButtonClick(note.id)" class="card-sidebar-button card-sidebar-delete-btn">Удалить заметку</div>
+					  		<div @click="onDeleteNoteButtonClick()" class="card-sidebar-button card-sidebar-delete-btn">Удалить заметку</div>
 		  			</div>
 
 			    	<div class="card-header">
@@ -59,11 +59,14 @@
 	  	
 	  		</div>
 
+	  		<app-dialog v-if="isDialogVisible" :dialogProps="dialogProps" @confirm="answerIsConfirm()" @cancel="closeModal()"></app-dialog>
+
 		</div>
 </template>
 
 <script>
 	import TodoItem from './TodoItem.vue'
+	import DialogWindow from './DialogWindow.vue'
 
   export default {
 		props: ['noteId'],
@@ -77,7 +80,9 @@
 		  	initState: null,
 		  	doneChanges: [],
 		  	undoneChanges: [],
-		  	stateBeforeTitleUpdated: null
+		  	stateBeforeTitleUpdated: null,
+		  	dialogProps: null,
+	      isDialogVisible: false
 		  }
 		},
 
@@ -92,7 +97,7 @@
 					return this.$store.state.notes.filter(item => item.id === this.noteId)[0]
 				} else {
 					let note = {
-						id: 'note-' + this.getNextId(),
+						id: this.getNextId(),
 						title: 'New Note',
 						todoList: null
 					}
@@ -134,10 +139,14 @@
 				this.doneChanges.push(prevState)
 			},
 
-			onDeleteNoteButtonClick (noteId) {		// удаление заметки
-				// вызвать окно с подтверждением
-				this.$store.dispatch('deleteNote', noteId)
-				this.$emit('showNotes')
+			onDeleteNoteButtonClick () {		// удаление заметки
+				this.dialogProps = {
+	  			title: 'Удалить заметку?',
+	  			cancelText: 'Отмена',
+	  			confirmText: 'Удалить',
+	  			type: 'deleteNote'
+	  		}
+	  		this.isDialogVisible = true
 			},
 
 			onEditTitleButtonClick () {		// редактирование заголовка заметки
@@ -175,9 +184,13 @@
 			},
 
 			onCancelNoteChangesButtonClick () {		// отмена всех изменений в заметке
-				// вызвать окно с подтверждением
-				this.$store.replaceState(this.initState)
-				this.$emit('showNotes')
+				this.dialogProps = {
+	  			title: 'Отменить внесенные изменения?',
+	  			cancelText: 'Нет',
+	  			confirmText: 'Да',
+	  			type: 'cancelNoteChanges'
+	  		}
+	  		this.isDialogVisible = true
 			},
 
 			setStateSnapshot (state) {		// сделать снимок состояния хранилища для возможности отката изменений				
@@ -188,12 +201,38 @@
 
 				this.doneChanges.push(newState)
 				this.undoneChanges = []
+			},
+
+			answerIsConfirm () {
+				if (this.dialogProps.type === 'deleteNote') {
+					this.deleteNote()
+				} else if (this.dialogProps.type === 'cancelNoteChanges') {
+					this.cancelNoteChanges()
+				}
+
+				this.closeModal()
+			},
+
+			closeModal () {
+				this.dialogProps = null
+				this.isDialogVisible = false
+			},
+
+			deleteNote () {
+				this.$store.dispatch('deleteNote', this.noteId)
+				this.$emit('showNotes')
+			},
+
+			cancelNoteChanges () {
+				this.$store.replaceState(this.initState)
+				this.$emit('showNotes')
 			}
 
 		},
 
 		components: {
-			'app-todo-item': TodoItem
+			'app-todo-item': TodoItem,
+			'app-dialog': DialogWindow
 		}
   }
 </script>

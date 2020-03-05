@@ -27,14 +27,23 @@
 
 				<div @click="onAddButtonClick()" class="note-add-button">Добавить заметку</div>
 
+				<app-dialog v-if="isDialogVisible"
+										:dialogProps="dialogProps"
+										@confirm="deleteNote()"
+										@cancel="closeModal()"></app-dialog>
+
   	</div>
 </template>
 
 <script>
+	import DialogWindow from './DialogWindow.vue'
+
 	export default {
 	  data () {
 	    return {
-	      
+	      dialogProps: null,
+	      isDialogVisible: false,
+	      currentNoteId: null
 	    }
 	  },
 	  computed: {
@@ -43,19 +52,38 @@
 	  	}
 	  },
 	  methods: {
+
 	  	onAddButtonClick () {		// добавить новую заметку
 	  		this.$emit('openNewNote')
 	  	},
+
 	  	onChangeButtonClick (noteId) {		// переход к редактированию определенной заметки
 	  		this.$emit('openNote', noteId)
 	  	},
+
 	  	onDeleteButtonClick (noteId) {		// удаление определенной заметки
-	  		// вызвать окно с подтверждением
-	  		this.$store.dispatch('deleteNote', noteId)
+	  		this.dialogProps = {
+	  			title: 'Удалить заметку?',
+	  			cancelText: 'Отмена',
+	  			confirmText: 'Удалить'
+	  		}
+	  		this.currentNoteId = noteId
+	  		this.isDialogVisible = true
+	  	},
+
+	  	closeModal () {
+	  		this.dialogProps = null
+	  		this.isDialogVisible = false
+	  		this.currentNoteId = null
+	  	},
+
+	  	deleteNote () {
+	  		this.$store.dispatch('deleteNote', this.currentNoteId)
+	  		this.closeModal()
 	  	}
 	  },
 	  components: {
-	  	
+	  	'app-dialog': DialogWindow
 	  }
 	}
 </script>

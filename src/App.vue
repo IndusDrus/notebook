@@ -3,7 +3,6 @@
     
   	<app-notelist v-if="showNoteList" @openNote="openNote($event)" @openNewNote="openNewNote()"></app-notelist>
   	<app-note v-if="showNote" :noteId="noteId" @showNotes="showNotes()"></app-note>
-  	<app-modal></app-modal>
 
   </div>
 </template>
@@ -11,7 +10,6 @@
 <script>
 	import Note from './components/Note.vue'
 	import NoteList from './components/NoteList.vue'
-	import ModalWindow from './components/ModalWindow.vue'
 
 	export default {
 	  name: 'app',
@@ -46,8 +44,7 @@
 
 	  components: {
 	  	'app-note': Note,
-	  	'app-notelist': NoteList,
-	  	'app-modal': ModalWindow
+	  	'app-notelist': NoteList
 	  }
 }
 </script>
