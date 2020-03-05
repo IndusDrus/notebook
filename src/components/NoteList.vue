@@ -26,8 +26,6 @@
 	  		</div>
 
 				<div @click="onAddButtonClick()" class="note-add-button">Добавить заметку</div>
-				<div @click="undo()">Undo</div>
-				<div @click="redo()">Redo</div>
 
   	</div>
 </template>

@@ -4,8 +4,16 @@
 				<div class="note-card">
   	
 		  			<div class="card-sidebar">
-					  		<div class="card-sidebar-button card-sidebar-undo-button">Отменить</div>
-					  		<div class="card-sidebar-button card-sidebar-redo-button">Повторить</div>
+					  		<div v-if="canUndo"
+					  				 @click="onUndoButtonClick()"
+					  				 class="card-sidebar-button card-sidebar-undo-button">
+					  				Отменить
+				  			</div>
+					  		<div v-if="canRedo"
+					  				 @click="onRedoButtonClick()"
+					  				 class="card-sidebar-button card-sidebar-redo-button">
+					  				Повторить
+				  			</div>
 					  		<div @click="onDeleteNoteButtonClick(note.id)" class="card-sidebar-button card-sidebar-delete-btn">Удалить заметку</div>
 		  			</div>
 
@@ -37,6 +45,7 @@
 		    								<app-todo-item v-for="todoItem in note.todoList" 
 		    															 :item="todoItem"
     															 		 @deleteItem="deleteTodoItem(todoItem)"
+    															 		 @setStateSnapshot="setStateSnapshot($event)"
 		    															 class="card-todo-item"></app-todo-item>
 										</ul>
 		    				</div>
@@ -65,7 +74,10 @@
 		  	oldNoteTitle: null,
 		  	isTodoItemOpenToEdit: false,
 		  	oldTodoText: null,
-		  	initState: null
+		  	initState: null,
+		  	doneChanges: [],
+		  	undoneChanges: [],
+		  	stateBeforeTitleUpdated: null
 		  }
 		},
 
@@ -88,20 +100,39 @@
 					return note
 				}
 
+			},
+
+			canUndo () {		// проверка возможности отката изменения
+				return this.doneChanges.length && !this.isTitleOpenToEdit && !this.isTodoItemOpenToEdit
+			},
+
+			canRedo () {		// проверка возможности возврата изменения
+				return this.undoneChanges.length && !this.isTitleOpenToEdit && !this.isTodoItemOpenToEdit
 			}
+
 		},
 
 		methods: {
 			getNextId () {
 				let nextId = this.$store.state.nextId
-				console.log(nextId)
 				this.$store.dispatch('getNextId')
 
 				return nextId
 			},
 
-			onUndoButtonClick () {},
-			onRedoButtonClick () {},
+			onUndoButtonClick () {		// откат на одно изменение назад
+				let prevState = this.doneChanges.pop()
+				let nextState = JSON.parse(JSON.stringify(this.$store.state))
+				this.$store.replaceState(prevState)
+				this.undoneChanges.push(nextState)
+			},
+
+			onRedoButtonClick () {		// возврат изменения
+				let nextState = this.undoneChanges.pop()
+				let prevState = JSON.parse(JSON.stringify(this.$store.state))
+				this.$store.replaceState(nextState)
+				this.doneChanges.push(prevState)
+			},
 
 			onDeleteNoteButtonClick (noteId) {		// удаление заметки
 				// вызвать окно с подтверждением
@@ -110,15 +141,18 @@
 			},
 
 			onEditTitleButtonClick () {		// редактирование заголовка заметки
+				this.stateBeforeTitleUpdated = JSON.parse(JSON.stringify(this.$store.state))
 				this.isTitleOpenToEdit = true
 				this.oldNoteTitle = this.note.title
 			},
 
 			onConfirmTitleButtonClick () {		// сохранение изменений заголовка заметки
 				this.isTitleOpenToEdit = false
-				this.oldNoteTitle = null
+				if (this.note.title != this.oldNoteTitle) {
+					this.setStateSnapshot(this.stateBeforeTitleUpdated)
+				}
 
-				// внести изменения в хранилище для возможности отката изменений
+				this.oldNoteTitle = null
 			},
 
 			onCancelTitleButtonClick () {		// отмена изменений заголовка заметки
@@ -132,6 +166,7 @@
 			},
 
 			onAddTodoItemButtonClick () {		// добавить элемент в 'to-do' список
+				this.setStateSnapshot();
 				this.$store.dispatch('addTodoItem', this.noteId)
 			},
 
@@ -143,6 +178,16 @@
 				// вызвать окно с подтверждением
 				this.$store.replaceState(this.initState)
 				this.$emit('showNotes')
+			},
+
+			setStateSnapshot (state) {		// сделать снимок состояния хранилища для возможности отката изменений				
+				let newState = JSON.parse(JSON.stringify(this.$store.state))
+				if (state) {
+					newState = state
+				}
+
+				this.doneChanges.push(newState)
+				this.undoneChanges = []
 			}
 
 		},
