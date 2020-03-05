@@ -1,75 +1,19 @@
 import Vue from 'vue';
 import Vuex from 'vuex';
+import VuexPersist from 'vuex-persist'
 
 Vue.use(Vuex);
+
+const vuexPersist = new VuexPersist({
+  key: 'notebook',
+  storage: window.localStorage
+})
+
 
 export default new Vuex.Store({
   state: {
   	nextId: 3,
-  	notes: [
-			{
-				id: 0,
-				title: 'Title 1',
-				todoList: [
-					{
-						checked: true,
-						text: "Todo 1-1"
-					},
-					{
-						checked: false,
-						text: "Todo 1-2"
-					},
-					{
-						checked: false,
-						text: "Todo 1-3"
-					},
-					{
-						checked: false,
-						text: "Todo 1-4"
-					}
-				]
-			},
-			{
-				id: 1,
-				title: 'Title 2',
-				todoList: [
-					{
-						checked: false,
-						text: "Todo 2-1"
-					},
-					{
-						checked: false,
-						text: "Todo 2-2"
-					},
-					{
-						checked: false,
-						text: "Todo 2-3"
-					},
-					{
-						checked: false,
-						text: "Todo 2-4"
-					}
-				]
-			},
-			{
-				id: 2,
-				title: 'Title 3',
-				todoList: [
-					{
-						checked: true,
-						text: "Todo 3-1"
-					},
-					{
-						checked: true,
-						text: "Todo 3-2"
-					},
-					{
-						checked: false,
-						text: "Todo 3-3"
-					}
-				]
-			}
-		]
+  	notes: []
   },
 
   getters: {},
@@ -95,6 +39,10 @@ export default new Vuex.Store({
   		}
   		let note = state.notes.filter(note => note.id === id)[0]
   		note.todoList.push(item)
+  	},
+
+  	addNewNote (state, note) {
+  		state.notes.push(note)
   	}
 
   },
@@ -114,8 +62,14 @@ export default new Vuex.Store({
 
   	addTodoItem (context, id) {
   		context.commit('addTodoItem', id)
+  	},
+
+  	addNewNote (context, note) {
+  		context.commit('addNewNote', note)
   	}
 
-  }
+  },
+
+  plugins: [vuexPersist.plugin]
 
 });

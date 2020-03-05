@@ -82,7 +82,8 @@
 		  	undoneChanges: [],
 		  	stateBeforeTitleUpdated: null,
 		  	dialogProps: null,
-	      isDialogVisible: false
+	      isDialogVisible: false,
+	      currentNoteId: this.noteId
 		  }
 		},
 
@@ -92,18 +93,18 @@
 
 		computed: {
 			note () {
-				if (this.noteId != null) {
-
-					return this.$store.state.notes.filter(item => item.id === this.noteId)[0]
-				} else {
+				if (this.currentNoteId === null) {
 					let note = {
 						id: this.getNextId(),
 						title: 'New Note',
-						todoList: null
+						todoList: []
 					}
 
-					return note
+					this.$store.dispatch('addNewNote', note)
+					this.currentNoteId = note.id
 				}
+
+				return this.$store.state.notes.filter(item => item.id === this.currentNoteId)[0]
 
 			},
 
@@ -171,12 +172,12 @@
 			},
 
 			deleteTodoItem (todoItem) {		// удаление элемента 'to-do' списка
-				this.$store.dispatch('deleteTodoItem', {id: this.noteId, item: todoItem})
+				this.$store.dispatch('deleteTodoItem', {id: this.currentNoteId, item: todoItem})
 			},
 
 			onAddTodoItemButtonClick () {		// добавить элемент в 'to-do' список
 				this.setStateSnapshot();
-				this.$store.dispatch('addTodoItem', this.noteId)
+				this.$store.dispatch('addTodoItem', this.currentNoteId)
 			},
 
 			onConfirmNoteChangesButtonClick () {		// сохранить все изменения в заметке
@@ -219,7 +220,7 @@
 			},
 
 			deleteNote () {
-				this.$store.dispatch('deleteNote', this.noteId)
+				this.$store.dispatch('deleteNote', this.currentNoteId)
 				this.$emit('showNotes')
 			},
 
