@@ -1,31 +1,39 @@
 <template>
-  	<div class="notes-container">
+  	<div class="note-list">
 	    		
-				<div v-for="note in notes" class="note-list-card">
+				<div v-for="note in notes" class="note-list__card">
   	
-		  			<div class="card-header">
-				    		<h2 class="card-title">{{ note.title }}</h2>
+		  			<div class="note-list__card-header">
+				    		<h2 class="note-list__card-title">{{ note.title }}</h2>
 			    	</div>
 	    
-		    		<div class="card-body">
-		    				<div class="card-todo-list-wrapper">
-		    						<ul class="card-todo-list">
-		    								<li v-for="todoItem in note.todoList" class="card-todo-list-item">
-		    										<input class="todo-checkbox" type="checkbox" v-model="todoItem.checked"></input>
-		    										<span class="todo-text">{{ todoItem.text }}</span>
-							    			</li>
-							    	</ul>
-		    				</div>
+		    		<div class="note-list__card-body">
+		    				<ul class="note-list__todo-list">
+    								<li v-for="todoItem in note.todoList.slice(0, countTodoItemsOnNote)" class="note-list__todo-item">
+    										<input v-model="todoItem.checked" class="note-list__todo-item-checkbox" type="checkbox"></input>
+    										<p class="note-list__todo-item-text">{{ todoItem.text }}</p>
+					    			</li>
+					    	</ul>
 		    		</div>
 	    
-	    			<div class="card-footer">
-	    					<div @click="onChangeButtonClick(note.id)" class="card-footer-button card-footer-change-button">Изменить</div>
-	    					<div @click="onDeleteButtonClick(note.id)" class="card-footer-button card-footer-delete-button">Удалить</div>
+	    			<div class="note-list__card-footer">
+	    					<div @click="onChangeButtonClick(note.id)"
+	    							 data-tooltip="Изменить"
+	    							 class="note-list__note-button_change">
+	    							Изменить
+    						</div>
+	    					<div @click="onDeleteButtonClick(note.id)"
+	    							 data-tooltip="Удалить"
+	    							 class="note-list__note-button_delete">
+	    							Удалить
+    						</div>
 	    			</div>
 	  	
 	  		</div>
 
-				<div @click="onAddButtonClick()" class="note-add-button">Добавить заметку</div>
+				<div @click="onAddButtonClick()"
+						 data-tooltip="Добавить заметку"
+						 class="note-list__add-button">Добавить заметку</div>
 
 				<app-dialog v-if="isDialogVisible"
 										:dialogProps="dialogProps"
@@ -41,27 +49,69 @@
 	export default {
 	  data () {
 	    return {
-	      dialogProps: null,
-	      isDialogVisible: false,
-	      currentNoteId: null
+	      dialogProps: null,			// объект с информацией для диалогового окна
+	      isDialogVisible: false,	// флаг видимости диалогового окна
+	      currentNoteId: null,		// ID выбранной заметки
+	      countTodoItemsOnNote: 2	// количество показанных элементов списка задач заметки
 	    }
 	  },
+
 	  computed: {
+
+	  	/**
+	  	 * Получение списка заметок из хранилища
+	  	 * 
+	  	 * @return {Object} notes	Список заметок
+	  	 */
 	  	notes () {
-	  		return this.$store.state.notes
+	  		let notes = this.$store.state.notes
+
+	  		return notes
 	  	}
+
 	  },
 	  methods: {
 
-	  	onAddButtonClick () {		// добавить новую заметку
+	  	/**
+	  	 * Закрыть диалоговое окно
+	  	 */
+	  	closeModal () {
+	  		this.dialogProps = null
+	  		this.isDialogVisible = false
+	  		this.currentNoteId = null
+	  	},
+
+	  	/**
+	  	 * Удалить текущую заметку
+	  	 */
+	  	deleteNote () {
+	  		this.$store.dispatch('deleteNote', this.currentNoteId)
+	  		this.$emit('saveToLocalStorage')
+	  		this.closeModal()
+	  	},
+	  	
+	  	/**
+	  	 * Обработка нажатия на кнопку добавления новой заметки
+	  	 */
+	  	onAddButtonClick () {
 	  		this.$emit('openNewNote')
 	  	},
 
-	  	onChangeButtonClick (noteId) {		// переход к редактированию определенной заметки
+	  	/**
+	  	 * Обработка нажатия на кнопку редактирования заметки
+	  	 * 
+	  	 * @param  {Number} noteId	ID редактируемой заметки
+	  	 */
+	  	onChangeButtonClick (noteId) {
 	  		this.$emit('openNote', noteId)
 	  	},
 
-	  	onDeleteButtonClick (noteId) {		// удаление определенной заметки
+	  	/**
+	  	 * Обработка нажатия на кнопку удаления заметки
+	  	 * 
+	  	 * @param  {Number} noteId	ID удаляемой заметки
+	  	 */
+	  	onDeleteButtonClick (noteId) {
 	  		this.dialogProps = {
 	  			title: 'Удалить заметку?',
 	  			cancelText: 'Отмена',
@@ -69,18 +119,8 @@
 	  		}
 	  		this.currentNoteId = noteId
 	  		this.isDialogVisible = true
-	  	},
-
-	  	closeModal () {
-	  		this.dialogProps = null
-	  		this.isDialogVisible = false
-	  		this.currentNoteId = null
-	  	},
-
-	  	deleteNote () {
-	  		this.$store.dispatch('deleteNote', this.currentNoteId)
-	  		this.closeModal()
 	  	}
+
 	  },
 	  components: {
 	  	'app-dialog': DialogWindow

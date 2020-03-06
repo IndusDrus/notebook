@@ -1,10 +1,12 @@
 <template>
   	<div class="dialog-wrapper">
     		
-				<h3 class="dialog-title">{{ dialogProps.title }}</h3>
-				<div class="dialog-buttons-wrapper">
-						<div @click="onCancelButtonClick()" class="dialog-button dialog-cancel-button">{{ dialogProps.cancelText }}</div>
-						<div @click="onConfirmButtonClick()" class="dialog-button dialog-confirm-button">{{ dialogProps.confirmText }}</div>
+				<div class="dialog">
+						<h3 class="dialog__title">{{ dialogProps.title }}</h3>
+						<div class="dialog__buttons-wrapper">
+								<div @click="onCancelButtonClick()" class="dialog__button_cancel">{{ dialogProps.cancelText }}</div>
+								<div @click="onConfirmButtonClick()" class="dialog__button_confirm">{{ dialogProps.confirmText }}</div>
+						</div>
 				</div>
 
   	</div>
@@ -21,10 +23,17 @@
     },
 
     methods: {
+    	
+    	/**
+    	 * Обработка нажатия на кнопку отрицательного ответа
+    	 */
     	onCancelButtonClick () {
     		this.$emit('cancel')
     	},
 
+    	/**
+    	 * Обработка нажатия на кнопку положительного ответа
+    	 */
     	onConfirmButtonClick () {
     		this.$emit('confirm')
     	}

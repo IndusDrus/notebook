@@ -1,30 +1,34 @@
 <template>
-	  <li>
+	  <li class="note-card__todo-item">
 				<input v-model="item.checked"
-					 		 @click="changeCheckboxState()"
-							 class="item-checkbox"
-							 type="checkbox"></input>
-				<span v-if="!isItemOpenToEdit" class="item-text">{{ item.text }}</span>
-				<input v-if="isItemOpenToEdit" v-model="item.text" type="text" class="item-text-input">
-				<div class="item-button-wrapper">
+					 		 @click="onCheckboxClick()"
+							 class="note-card__todo-item-checkbox"
+							 type="checkbox">
+				<span v-if="!isItemOpenToEdit" class="note-card__todo-text">{{ item.text }}</span>
+				<input v-if="isItemOpenToEdit" v-model="item.text" type="text" class="note-card__todo-text-input">
+				<div class="note-card__todo-item-button-wrapper">
 						<div v-if="!isItemOpenToEdit"
 								 @click="onEditItemButtonClick()"
-								 class="item-button item-edit-button">
+								 data-tooltip="Изменить текст"
+								 class="note-card__todo-item-button_edit">
 								Изменить(ТДИ)
 						</div>
 						<div v-if="!isItemOpenToEdit"
 								 @click="onDeleteItemButtonClick()"
-								 class="item-button item-delete-button">
+								 data-tooltip="Удалить элемент"
+								 class="note-card__todo-item-button_delete">
 								Удалить(ТДИ)
 						</div>
 						<div v-if="isItemOpenToEdit"
 								 @click="onConfirmItemButtonClick()"
-								 class="item-button item-confirm-button">
+								 data-tooltip="Сохранить изменения"
+								 class="note-card__todo-item-button_save">
 								Сохранить(ТДИ)
 						</div>
 						<div v-if="isItemOpenToEdit"
 								 @click="onCancelItemButtonClick()"
-								 class="item-button item-cancel-button">
+								 data-tooltip="Отменить изменения"
+								 class="note-card__todo-item-button_cancel">
 								Отменить(ТДИ)
 						</div>
 				</div>
@@ -36,25 +40,42 @@
 	  props: ['item'],
 	  data () {
 	    return {
-	      isItemOpenToEdit: false,
-	      oldItemText: null,
-	      stateBeforeTextUpdated: null
+	      isItemOpenToEdit: false,			// флаг редактирования текста элемента списка задач
+	      oldItemText: null,						// текст элемента списка задач до изменения
+	      stateBeforeTextUpdated: null	// состояние хранилища до изменения текста элемента списка задач
 	    }
 	  },
 
 	  methods: {
-	  	onEditItemButtonClick () {		// редактирование текста элемента 'to-do' списка
+	  	
+	  	/**
+	  	 * Обработка нажатия на чекбокс для возможности отмены изменений
+	  	 */
+			onCheckboxClick () {
+				this.$emit('setStateSnapshot')
+			},
+
+	  	/**
+	  	 * Обработка нажатия на кнопку изменения текста элемента списка задач
+	  	 */
+	  	onEditItemButtonClick () {
 				this.stateBeforeTextUpdated = JSON.parse(JSON.stringify(this.$store.state))
 				this.isItemOpenToEdit = true
 				this.oldItemText = this.item.text
 			},
 
-			onDeleteItemButtonClick () {		// удаление элемента 'to-do' списка
+			/**
+	  	 * Обработка нажатия на кнопку удаления элемента списка задач
+	  	 */
+			onDeleteItemButtonClick () {
 				this.$emit('setStateSnapshot')
 				this.$emit('deleteItem')
 			},
 
-			onConfirmItemButtonClick () {		// сохранение изменений текста элемента 'to-do' списка
+			/**
+	  	 * Обработка нажатия на кнопку сохранения изменений текста элемента списка задач
+	  	 */
+			onConfirmItemButtonClick () {
 				this.isItemOpenToEdit = false
 				if (this.item.text != this.oldItemText) {
 					this.$emit('setStateSnapshot', this.stateBeforeTextUpdated)
@@ -62,15 +83,15 @@
 				this.oldItemText = null
 			},
 
-			onCancelItemButtonClick () {		// отмена изменений элемента 'to-do' списка
+			/**
+	  	 * Обработка нажатия на кнопку отмены изменений текста элемента списка задач
+	  	 */
+			onCancelItemButtonClick () {
 				this.isItemOpenToEdit = false
 				this.item.text = this.oldItemText
 				this.oldItemText = null
-			},
-
-			changeCheckboxState () {		// отработка нажатия на чекбокс для вохможности отката изменений
-				this.$emit('setStateSnapshot')
 			}
+
 	  }
 }
 </script>
