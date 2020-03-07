@@ -1,0 +1,49 @@
+@import url('note-list.css');
+@import url('note.css');
+@import url('todo-item.css');
+@import url('dialog-window.css');
+
+*, ::after, ::before {
+	box-sizing: border-box;
+}
+body {
+	font-family: 'PlayfairDisplay';
+	margin: 0;
+	padding: 1rem 0;
+	min-height: 100vh;
+	position: relative;
+}
+
+.container {
+	position: relative;
+	display: flex;
+	width: 100%;
+  padding-right: 15px;
+  padding-left: 15px;
+  margin-right: auto;
+  margin-left: auto;
+}
+
+@media (min-width:576px) {
+  .container {
+    max-width: 540px;
+  }
+}
+
+@media (min-width:768px) {
+  .container {
+    max-width: 720px;
+  }
+}
+
+@media (min-width:992px) {
+  .container {
+    max-width: 960px;
+  }
+}
+
+@media (min-width:1200px) {
+  .container {
+    max-width: 1140px;
+  }
+}

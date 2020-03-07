@@ -2,38 +2,41 @@
   	<div class="note-list">
 	    		
 				<div v-for="note in notes" class="note-list__card">
-  	
-		  			<div class="note-list__card-header">
-				    		<h2 class="note-list__card-title">{{ note.title }}</h2>
-			    	</div>
-	    
-		    		<div class="note-list__card-body">
-		    				<ul class="note-list__todo-list">
-    								<li v-for="todoItem in note.todoList.slice(0, countTodoItemsOnNote)" class="note-list__todo-item">
-    										<input v-model="todoItem.checked" class="note-list__todo-item-checkbox" type="checkbox"></input>
-    										<p class="note-list__todo-item-text">{{ todoItem.text }}</p>
-					    			</li>
-					    	</ul>
-		    		</div>
-	    
-	    			<div class="note-list__card-footer">
-	    					<div @click="onChangeButtonClick(note.id)"
-	    							 data-tooltip="Изменить"
-	    							 class="note-list__note-button_change">
-	    							Изменить
-    						</div>
-	    					<div @click="onDeleteButtonClick(note.id)"
-	    							 data-tooltip="Удалить"
-	    							 class="note-list__note-button_delete">
-	    							Удалить
-    						</div>
-	    			</div>
+  					<div class="note-list__card-wrapper">
+  							<div class="note-list__card-buttons-wrapper">
+			    					<div @click="onChangeButtonClick(note.id)"
+			    							 class="note-list__note-button">
+			    							<i class="note-list__note-button-icon note-list__note-button-icon_change fa fa-cog" data-tooltip="Изменить заметку"></i>
+		    						</div>
+			    					<div @click="onDeleteButtonClick(note.id)"
+			    							 data-tooltip="Удалить"
+			    							 class="note-list__note-button">
+			    							 <i class="note-list__note-button-icon note-list__note-button-icon_delete fa fa-trash" data-tooltip="Удалить заметку"></i>
+		    						</div>
+			    			</div>
+
+				  			<div class="note-list__card-header">
+						    		<h2 class="note-list__card-title">{{ note.title }}</h2>
+					    	</div>
+			    
+				    		<div class="note-list__card-body">
+				    				<ul class="note-list__todo-list">
+		    								<li v-for="todoItem in note.todoList.slice(0, countTodoItemsOnNote)" class="note-list__todo-item">
+		    										<div class="note-list__todo-item-checkbox">
+		    												<i v-if="todoItem.checked" class="note-list__todo-item-checkbox-icon fa fa-check-square"></i>
+		    										</div>
+		    										<p class="note-list__todo-item-text">{{ todoItem.text }}</p>
+							    			</li>
+							    	</ul>
+				    		</div>
+  					</div>
 	  	
 	  		</div>
 
 				<div @click="onAddButtonClick()"
-						 data-tooltip="Добавить заметку"
-						 class="note-list__add-button">Добавить заметку</div>
+						 class="note-list__add-button">
+						<i class="note-list__add-button-icon fa fa-plus-circle" data-tooltip="Создать заметку"></i>
+				</div>
 
 				<app-dialog v-if="isDialogVisible"
 										:dialogProps="dialogProps"

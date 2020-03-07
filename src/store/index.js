@@ -37,7 +37,7 @@ export default new Vuex.Store({
   	addTodoItem (state, id) {
   		let item = {
   			checked: false,
-  			text: "New Item"
+  			text: "Новая задача"
   		}
 
   		let note = state.notes.filter(note => note.id === id)[0]

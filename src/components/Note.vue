@@ -6,20 +6,17 @@
 		  			<div class="note-card__sidebar">
 					  		<div v-if="canUndo"
 					  				 @click="onUndoButtonClick()"
-					  				 data-tooltip="Отменить"
-					  				 class="note-card__sidebar-button_undo">
-					  				Отменить
+					  				 class="note-card__sidebar-button">
+					  				<i class="note-card__sidebar-button_undo fa fa-undo" data-tooltip="Отменить"></i>
 				  			</div>
 					  		<div v-if="canRedo"
 					  				 @click="onRedoButtonClick()"
-					  				 data-tooltip="Повторить"
-					  				 class="note-card__sidebar-button_redo">
-					  				Повторить
+					  				 class="note-card__sidebar-button">
+					  				<i class="note-card__sidebar-button_redo fa fa-repeat" data-tooltip="Повторить"></i>
 				  			</div>
 					  		<div @click="onDeleteNoteButtonClick()"
-					  				 data-tooltip="Удалить заметку"
-					  				 class="note-card__sidebar-button_delete">
-					  				Удалить заметку
+					  				 class="note-card__sidebar-button">
+					  				<i class="note-card__sidebar-button_delete fa fa-trash" data-tooltip="Удалить заметку"></i>
 				  			</div>
 		  			</div>
 
@@ -29,21 +26,18 @@
 				    		<div class="note-card__title-button-wrapper">
 					    			<div v-if="!isTitleOpenToEdit"
 					    				   @click="onEditTitleButtonClick()"
-					    				   data-tooltip="Изменить заголовок"
-					    				   class="note-card__title-button_edit">
-					    				 	Изменить(Заг)
+					    				   class="note-card__title-button">
+					    				 	<i class="note-card__title-button_edit fa fa-pencil-square" data-tooltip="Изменить заголовок"></i>
 			    				 	</div>
 					    			<div v-if="isTitleOpenToEdit"
 					    					 @click="onConfirmTitleButtonClick()"
-					    					 data-tooltip="Сохранить изменения"
-					    					 class="note-card__title-button_confirm">
-					    					Сохранить(Заг)
+					    					 class="note-card__title-button">
+					    					<i class="note-card__title-button_confirm fa fa-check-circle" data-tooltip="Сохранить"></i>
 				    				</div>
 					    			<div v-if="isTitleOpenToEdit"
 					    					 @click="onCancelTitleButtonClick()"
-					    					 data-tooltip="Отменить изменения"
-					    					 class="note-card__title-button_cancel">
-					    					Отменить(Заг)
+					    					 class="note-card__title-button">
+					    					<i class="note-card__title-button_cancel fa fa-minus-circle" data-tooltip="Отменить"></i>
 				    				</div>
 				    		</div>
 			    	</div>
@@ -56,23 +50,20 @@
 															 		 @setStateSnapshot="setStateSnapshot($event)"></app-todo-item>
 								</ul>
 		    				<div @click="onAddTodoItemButtonClick()"
-		    						 data-tooltip="Добавить задачу"
 		    						 class="note-card__todo-add-item-button">
-		    						Добавить(ТДИ)
+		    						<i class="note-card__todo-add-item-button-icon fa fa-plus-circle" data-tooltip="Добавить задачу"></i>
 	    					</div>
 		    		</div>
 	    
 	    			<div class="note-card__footer">
-	    					<div @click="onCancelNoteChangesButtonClick()"
-	    							 data-tooltip="Отменить изменения"
+	    					<button @click="onCancelNoteChangesButtonClick()"
 	    							 class="note-card__footer-button_cancel">
-	    							Отменить(Зам)
-    						</div>
-	    					<div @click="onConfirmNoteChangesButtonClick()"
-	    							 data-tooltip="Сохранить изменения"
+	    							Отменить
+    						</button>
+	    					<button @click="onConfirmNoteChangesButtonClick()"
 	    							 class="note-card__footer-button_save">
-	    							Сохранить(Зам)
-    						</div>
+	    							Сохранить
+    						</button>
 	    			</div>
 	  	
 	  		</div>
@@ -95,6 +86,7 @@
 		data () {
 		  return {
 	      currentNoteId: this.noteId,			// ID открытой заметки
+		  	isNewNote: false,								// флаг новой заметки
 		  	isTitleOpenToEdit: false,				// флаг редактирования заголовка заметки
 		  	isTodoItemOpenToEdit: false,		// флаг редактирования элемента списка задач
 	      isDialogVisible: false,					// флаг видимости диалогового окна
@@ -130,12 +122,13 @@
 				if (this.currentNoteId === null) {
 					let newNote = {
 						id: this.getNextId(),
-						title: 'New Note',
+						title: 'Новая заметка',
 						todoList: []
 					}
 
 					this.$store.dispatch('addNewNote', newNote)
 					this.currentNoteId = newNote.id
+					this.isNewNote = true
 				}
 
 				let note = this.$store.state.notes.filter(item => item.id === this.currentNoteId)[0]
@@ -289,12 +282,23 @@
 			 * Обработка нажатия на кнопку отмены всех изменений в заметке
 			 */
 			onCancelNoteChangesButtonClick () {
-				this.dialogProps = {
-	  			title: 'Отменить внесенные изменения?',
-	  			cancelText: 'Нет',
-	  			confirmText: 'Да',
-	  			type: 'cancelNoteChanges'
-	  		}
+				if (this.isNewNote) {
+					this.dialogProps = {
+		  			title: 'Отменить создание заметки?',
+		  			cancelText: 'Нет',
+		  			confirmText: 'Да',
+		  			type: 'cancelNoteChanges'
+		  		}
+				}
+				else {
+					this.dialogProps = {
+		  			title: 'Отменить внесенные изменения?',
+		  			cancelText: 'Нет',
+		  			confirmText: 'Да',
+		  			type: 'cancelNoteChanges'
+		  		}	
+				}
+				
 	  		this.isDialogVisible = true
 			},
 

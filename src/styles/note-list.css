@@ -1,0 +1,168 @@
+.note-list {
+	display: flex;
+  flex-wrap: wrap;
+  flex-grow: 1;
+  justify-content: flex-start;
+  margin-right: -15px;
+  margin-left: -15px;
+}
+
+@media (max-width: 767px) {
+  .note-list {
+    justify-content: center;
+  }
+}
+
+
+.note-list__card {
+  -ms-flex: 0 0 33.333333%;
+  -moz-flex: 0 0 33.333333%;
+  -o-flex: 0 0 33.333333%;
+  flex: 0 0 33.333333%;
+  max-width: 33.333333%;
+  padding: 15px;
+}
+
+@media (max-width: 991px) {
+  .note-list__card {
+    -ms-flex: 0 0 50%;
+    -moz-flex: 0 0 50%;
+    -o-flex: 0 0 50%;
+    flex: 0 0 50%;
+    max-width: 50%;
+  }
+}
+
+@media (max-width: 767px) {
+  .note-list__card {
+    -ms-flex: 0 0 70%;
+    -moz-flex: 0 0 70%;
+    -o-flex: 0 0 70%;
+    flex: 0 0 70%;
+    max-width: 70%;
+  }
+}
+
+@media (max-width: 575px) {
+  .note-list__card {
+    -ms-flex: 0 0 100%;
+    -moz-flex: 0 0 100%;
+    -o-flex: 0 0 100%;
+    flex: 0 0 100%;
+    max-width: 100%;
+  }
+}
+
+.note-list__card-wrapper {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  padding: 1rem 0;
+  background-color: aqua;
+}
+
+
+.note-list__card-buttons-wrapper {
+  display: flex;
+  justify-content: flex-end;
+  padding: 0 0.5rem;
+}
+
+
+.note-list__note-button {
+  display: flex;
+  justify-content: center;
+  padding: 0 0.5rem;
+  -ms-flex: 0 0 12%;
+  -moz-flex: 0 0 12%;
+  -o-flex: 0 0 12%;
+  flex: 0 0 12%;
+  max-width: 12%;
+}
+
+
+.note-list__note-button-icon {
+  font-size: 1.5rem;
+  height: 1.5rem;
+  color: gray;
+}
+
+.note-list__note-button-icon:hover {
+  color: black;
+  cursor: pointer;
+}
+
+
+.note-list__card-header {
+  padding: 0.5rem 1rem;
+}
+
+
+.note-list__card-title {
+  margin: 0;
+}
+
+
+.note-list__card-body {
+  padding-top: 0.5rem;
+}
+
+
+.note-list__todo-list {
+  list-style-type: none;
+  margin: 0;
+  padding: 0 1rem;
+}
+
+
+.note-list__todo-item {
+  display: flex;
+  padding: 0.5rem;
+}
+
+
+.note-list__todo-item-checkbox {
+  flex: 0 0 10%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+
+.note-list__todo-item-text {
+  margin: 0;
+}
+
+
+.note-list__add-button {
+  font-size: 7rem;
+  height: 7rem;
+  display: flex;
+  position: fixed;
+  bottom: 3rem;
+  right: 3rem;
+  cursor: pointer;
+  color: gray;
+}
+
+.note-list__add-button:hover {
+  color: black;
+}
+
+@media (max-width: 767px) {
+  .note-list__add-button {
+    font-size: 5rem;
+    height: 5rem;
+    bottom: 2rem;
+    right: 2rem;
+  }
+}
+
+@media (max-width: 575px) {
+  .note-list__add-button {
+    font-size: 4rem;
+    height: 4rem;
+    bottom: 1rem;
+    right: 1rem;
+  }
+}

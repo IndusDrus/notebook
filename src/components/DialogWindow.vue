@@ -4,8 +4,8 @@
 				<div class="dialog">
 						<h3 class="dialog__title">{{ dialogProps.title }}</h3>
 						<div class="dialog__buttons-wrapper">
-								<div @click="onCancelButtonClick()" class="dialog__button_cancel">{{ dialogProps.cancelText }}</div>
-								<div @click="onConfirmButtonClick()" class="dialog__button_confirm">{{ dialogProps.confirmText }}</div>
+								<button @click="onCancelButtonClick()" class="dialog__button_cancel">{{ dialogProps.cancelText }}</button>
+								<button @click="onConfirmButtonClick()" class="dialog__button_confirm">{{ dialogProps.confirmText }}</button>
 						</div>
 				</div>
 

@@ -1,5 +1,5 @@
 <template>
-  <div id="app">
+  <div id="app" class="container">
     
   	<app-notelist v-if="showNoteList"
   								@openNote="openNote($event)"

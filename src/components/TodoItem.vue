@@ -9,27 +9,23 @@
 				<div class="note-card__todo-item-button-wrapper">
 						<div v-if="!isItemOpenToEdit"
 								 @click="onEditItemButtonClick()"
-								 data-tooltip="Изменить текст"
-								 class="note-card__todo-item-button_edit">
-								Изменить(ТДИ)
+								 class="note-card__todo-item-button">
+								<i class="note-card__todo-item-button_edit fa fa-pencil" data-tooltip="Изменить текст"></i>
 						</div>
 						<div v-if="!isItemOpenToEdit"
 								 @click="onDeleteItemButtonClick()"
-								 data-tooltip="Удалить элемент"
-								 class="note-card__todo-item-button_delete">
-								Удалить(ТДИ)
+								 class="note-card__todo-item-button">
+								<i class="note-card__todo-item-button_delete fa fa-trash" data-tooltip="Удалить элемент"></i>
 						</div>
 						<div v-if="isItemOpenToEdit"
 								 @click="onConfirmItemButtonClick()"
-								 data-tooltip="Сохранить изменения"
-								 class="note-card__todo-item-button_save">
-								Сохранить(ТДИ)
+								 class="note-card__todo-item-button">
+								<i class="note-card__todo-item-button_save fa fa-check-circle" data-tooltip="Сохранить текст"></i>
 						</div>
 						<div v-if="isItemOpenToEdit"
 								 @click="onCancelItemButtonClick()"
-								 data-tooltip="Отменить изменения"
-								 class="note-card__todo-item-button_cancel">
-								Отменить(ТДИ)
+								 class="note-card__todo-item-button">
+								<i class="note-card__todo-item-button_cancel fa fa-minus-circle" data-tooltip="Отменить изменения"></i>
 						</div>
 				</div>
 		</li>
