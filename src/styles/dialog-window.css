@@ -1,0 +1,45 @@
+.dialog-wrapper {
+	position: fixed;
+	top: 0;
+	bottom: 0;
+	left: 0;
+	right: 0;
+	z-index: 9999;
+	background: rgba(0, 0, 0, 0.7);
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+
+.dialog {
+	background-color: aqua;
+	padding: 2rem 3rem;
+	border-radius: 1.5rem;
+}
+
+
+.dialog__title {
+	margin: 0;
+	padding: 1rem 0.5rem;
+	text-align: center;
+}
+
+
+.dialog__buttons-wrapper {
+	display: flex;
+	justify-content: space-between;
+}
+
+
+.dialog__button {
+	margin: .5rem;
+	cursor: pointer;
+	font-family: inherit;
+	font-size: 1rem;
+	padding: 0.5rem 1rem;
+	flex: 0 0 40%;
+	background-color: white;
+	border: 1px solid transparent;
+	border-radius: 0.7rem;
+}

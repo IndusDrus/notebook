@@ -4,19 +4,21 @@
 				<div class="note-card">
   	
 		  			<div class="note-card__sidebar">
-					  		<div v-if="canUndo"
-					  				 @click="onUndoButtonClick()"
-					  				 class="note-card__sidebar-button">
-					  				<i class="note-card__sidebar-button_undo fa fa-undo" data-tooltip="Отменить"></i>
+					  		<div class="note-card__sidebar-button">
+					  				<i v-if="canUndo"
+					  					 @click="onUndoButtonClick()"
+					  					 class="note-card__sidebar-button-icon note-card__sidebar-button_undo fa fa-undo"
+					  					 data-tooltip="Отменить"></i>
 				  			</div>
-					  		<div v-if="canRedo"
-					  				 @click="onRedoButtonClick()"
-					  				 class="note-card__sidebar-button">
-					  				<i class="note-card__sidebar-button_redo fa fa-repeat" data-tooltip="Повторить"></i>
+					  		<div class="note-card__sidebar-button">
+					  				<i v-if="canRedo"
+					  					 @click="onRedoButtonClick()"
+					  					 class="note-card__sidebar-button-icon note-card__sidebar-button_redo fa fa-repeat"
+					  					 data-tooltip="Повторить"></i>
 				  			</div>
 					  		<div @click="onDeleteNoteButtonClick()"
 					  				 class="note-card__sidebar-button">
-					  				<i class="note-card__sidebar-button_delete fa fa-trash" data-tooltip="Удалить заметку"></i>
+					  				<i class="note-card__sidebar-button-icon note-card__sidebar-button_delete fa fa-trash" data-tooltip="Удалить заметку"></i>
 				  			</div>
 		  			</div>
 
@@ -27,17 +29,17 @@
 					    			<div v-if="!isTitleOpenToEdit"
 					    				   @click="onEditTitleButtonClick()"
 					    				   class="note-card__title-button">
-					    				 	<i class="note-card__title-button_edit fa fa-pencil-square" data-tooltip="Изменить заголовок"></i>
+					    				 	<i class="note-card__title-button-icon note-card__title-button_edit fa fa-pencil-square" data-tooltip="Изменить заголовок"></i>
 			    				 	</div>
 					    			<div v-if="isTitleOpenToEdit"
 					    					 @click="onConfirmTitleButtonClick()"
 					    					 class="note-card__title-button">
-					    					<i class="note-card__title-button_confirm fa fa-check-circle" data-tooltip="Сохранить"></i>
+					    					<i class="note-card__title-button-icon note-card__title-button_confirm fa fa-check-circle" data-tooltip="Сохранить"></i>
 				    				</div>
 					    			<div v-if="isTitleOpenToEdit"
 					    					 @click="onCancelTitleButtonClick()"
 					    					 class="note-card__title-button">
-					    					<i class="note-card__title-button_cancel fa fa-minus-circle" data-tooltip="Отменить"></i>
+					    					<i class="note-card__title-button-icon note-card__title-button_cancel fa fa-minus-circle" data-tooltip="Отменить"></i>
 				    				</div>
 				    		</div>
 			    	</div>
@@ -57,11 +59,11 @@
 	    
 	    			<div class="note-card__footer">
 	    					<button @click="onCancelNoteChangesButtonClick()"
-	    							 class="note-card__footer-button_cancel">
+	    							 		class="note-card__footer-button note-card__footer-button_cancel">
 	    							Отменить
     						</button>
 	    					<button @click="onConfirmNoteChangesButtonClick()"
-	    							 class="note-card__footer-button_save">
+	    							 		class="note-card__footer-button note-card__footer-button_save">
 	    							Сохранить
     						</button>
 	    			</div>

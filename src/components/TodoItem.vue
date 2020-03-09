@@ -1,31 +1,31 @@
 <template>
 	  <li class="note-card__todo-item">
-				<input v-model="item.checked"
-					 		 @click="onCheckboxClick()"
-							 class="note-card__todo-item-checkbox"
-							 type="checkbox">
+	  		<div @click="onCheckboxClick()" class="note-card__todo-item-checkbox">
+						<i v-if="item.checked" class="note-card__todo-item-checkbox-icon note-card__todo-item-checkbox-icon_enabled fa fa-check-square"></i>
+						<i v-else class="note-card__todo-item-checkbox-icon note-card__todo-item-checkbox-icon_disabled fa fa-check-square"></i>
+				</div>
 				<span v-if="!isItemOpenToEdit" class="note-card__todo-text">{{ item.text }}</span>
 				<input v-if="isItemOpenToEdit" v-model="item.text" type="text" class="note-card__todo-text-input">
 				<div class="note-card__todo-item-button-wrapper">
 						<div v-if="!isItemOpenToEdit"
 								 @click="onEditItemButtonClick()"
 								 class="note-card__todo-item-button">
-								<i class="note-card__todo-item-button_edit fa fa-pencil" data-tooltip="Изменить текст"></i>
+								<i class="note-card__todo-item-button-icon note-card__todo-item-button_edit fa fa-pencil" data-tooltip="Изменить текст"></i>
 						</div>
 						<div v-if="!isItemOpenToEdit"
 								 @click="onDeleteItemButtonClick()"
 								 class="note-card__todo-item-button">
-								<i class="note-card__todo-item-button_delete fa fa-trash" data-tooltip="Удалить элемент"></i>
+								<i class="note-card__todo-item-button-icon note-card__todo-item-button_delete fa fa-trash" data-tooltip="Удалить элемент"></i>
 						</div>
 						<div v-if="isItemOpenToEdit"
 								 @click="onConfirmItemButtonClick()"
 								 class="note-card__todo-item-button">
-								<i class="note-card__todo-item-button_save fa fa-check-circle" data-tooltip="Сохранить текст"></i>
+								<i class="note-card__todo-item-button-icon note-card__todo-item-button_save fa fa-check-circle" data-tooltip="Сохранить текст"></i>
 						</div>
 						<div v-if="isItemOpenToEdit"
 								 @click="onCancelItemButtonClick()"
 								 class="note-card__todo-item-button">
-								<i class="note-card__todo-item-button_cancel fa fa-minus-circle" data-tooltip="Отменить изменения"></i>
+								<i class="note-card__todo-item-button-icon note-card__todo-item-button_cancel fa fa-minus-circle" data-tooltip="Отменить изменения"></i>
 						</div>
 				</div>
 		</li>
@@ -49,6 +49,7 @@
 	  	 */
 			onCheckboxClick () {
 				this.$emit('setStateSnapshot')
+				this.item.checked = !this.item.checked
 			},
 
 	  	/**

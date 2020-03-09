@@ -1,0 +1,147 @@
+.note-wrapper {
+	flex: 0 0 40%;
+	max-width: 40%;
+	padding: 2rem;
+}
+
+
+.note-card {
+	display: flex;
+	flex-direction: column;
+	background-color: aqua;
+	padding: 1rem;
+}
+
+
+.note-card__sidebar {
+	display: flex;
+	justify-content: flex-end;
+	padding: 0 0.5rem;
+}
+
+
+.note-card__sidebar-button {
+	flex: 0 0 10%;
+	max-width: 10%;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	padding: 0 0.5rem;
+}
+
+
+.note-card__sidebar-button-icon {
+	font-size: 1.5rem;
+	height: 1.5rem;
+	color: gray;
+}
+
+.note-card__sidebar-button-icon:hover {
+	color: black;
+	cursor: pointer;
+}
+
+
+.note-card__header {
+	display: flex;
+	align-items: center;
+	padding: 0.5rem;
+}
+
+
+.note-card__title {
+	margin: 0;
+	flex: 0 0 80%;
+	max-width: 80%;
+}
+
+
+.note-card__title-input {
+	font-family: 'PlayfairDisplay';
+	font-size: 24px;
+	font-weight: bold;
+	flex: 0 0 80%;
+	max-width: 80%;
+}
+
+
+.note-card__title-button-wrapper {
+	flex: 0 0 20%;
+	max-width: 20%;
+	display: flex;
+	justify-content: flex-end;
+	align-items: center;
+}
+
+
+.note-card__title-button {
+	flex: 0 0 50%;
+	max-width: 50%;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	padding: 0.5rem;
+}
+
+
+.note-card__title-button-icon {
+	font-size: 1.5rem;
+	height: 1.5rem;
+	color: gray;
+}
+
+.note-card__title-button-icon:hover {
+	color: black;
+	cursor: pointer;
+}
+
+
+.note-card__body {
+	padding-top: 0.5rem;
+}
+
+
+.note-card__todo-list {
+  list-style-type: none;
+  margin: 0;
+  padding: 0 0.5rem;
+}
+
+
+.note-card__todo-add-item-button {
+	display: flex;
+	justify-content: center;
+	padding: 0 1.5rem 0.5rem;
+	width: 60%;
+}
+
+
+.note-card__todo-add-item-button-icon {
+	font-size: 1.5rem;
+	height: 1.5rem;
+	color: gray;
+}
+
+.note-card__todo-add-item-button-icon:hover {
+	color: black;
+	cursor: pointer;
+}
+
+
+.note-card__footer {
+	display: flex;
+	justify-content: space-between;
+	padding: 0.5rem;
+}
+
+
+.note-card__footer-button {
+	cursor: pointer;
+	font-family: inherit;
+	font-size: 1rem;
+	padding: 0.5rem 1rem;
+	flex: 0 0 40%;
+	background-color: white;
+	border: 1px solid transparent;
+	border-radius: 0.7rem;
+}
