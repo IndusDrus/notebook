@@ -2,46 +2,55 @@
 		<div class="note-wrapper">
 		
 				<div class="note-card">
-  	
-		  			<div class="note-card__sidebar">
-					  		<div class="note-card__sidebar-button">
-					  				<i v-if="canUndo"
-					  					 @click="onUndoButtonClick()"
-					  					 class="note-card__sidebar-button-icon note-card__sidebar-button_undo fa fa-undo"
-					  					 data-tooltip="Отменить"></i>
-				  			</div>
-					  		<div class="note-card__sidebar-button">
-					  				<i v-if="canRedo"
-					  					 @click="onRedoButtonClick()"
-					  					 class="note-card__sidebar-button-icon note-card__sidebar-button_redo fa fa-repeat"
-					  					 data-tooltip="Повторить"></i>
-				  			</div>
-					  		<div @click="onDeleteNoteButtonClick()"
-					  				 class="note-card__sidebar-button">
-					  				<i class="note-card__sidebar-button-icon note-card__sidebar-button_delete fa fa-trash" data-tooltip="Удалить заметку"></i>
-				  			</div>
-		  			</div>
 
 			    	<div class="note-card__header">
-				    		<h2 v-if="!isTitleOpenToEdit" class="note-card__title">{{ note.title }}</h2>
-				    		<input v-if="isTitleOpenToEdit" v-model="note.title" type="text" class="note-card__title-input"></input>
-				    		<div class="note-card__title-button-wrapper">
-					    			<div v-if="!isTitleOpenToEdit"
-					    				   @click="onEditTitleButtonClick()"
-					    				   class="note-card__title-button">
-					    				 	<i class="note-card__title-button-icon note-card__title-button_edit fa fa-pencil-square" data-tooltip="Изменить заголовок"></i>
-			    				 	</div>
-					    			<div v-if="isTitleOpenToEdit"
-					    					 @click="onConfirmTitleButtonClick()"
-					    					 class="note-card__title-button">
-					    					<i class="note-card__title-button-icon note-card__title-button_confirm fa fa-check-circle" data-tooltip="Сохранить"></i>
-				    				</div>
-					    			<div v-if="isTitleOpenToEdit"
-					    					 @click="onCancelTitleButtonClick()"
-					    					 class="note-card__title-button">
-					    					<i class="note-card__title-button-icon note-card__title-button_cancel fa fa-minus-circle" data-tooltip="Отменить"></i>
-				    				</div>
-				    		</div>
+				    		<div class="note-card__sidebar">
+							  		<div class="note-card__sidebar-button">
+							  				<i v-if="canUndo"
+							  					 @click="onUndoButtonClick()"
+							  					 class="note-card__sidebar-button-icon note-card__sidebar-button_undo fa fa-undo"
+							  					 title="Отменить"></i>
+					  					 	<i v-else
+							  					 class="note-card__sidebar-button-icon note-card__sidebar-button-icon_disabled note-card__sidebar-button_undo fa fa-undo"
+							  					 title="Отменить"></i>
+						  			</div>
+							  		<div class="note-card__sidebar-button">
+							  				<i v-if="canRedo"
+							  					 @click="onRedoButtonClick()"
+							  					 class="note-card__sidebar-button-icon note-card__sidebar-button_redo fa fa-repeat"
+							  					 title="Повторить"></i>
+					  					 	<i v-else
+							  					 class="note-card__sidebar-button-icon note-card__sidebar-button-icon_disabled note-card__sidebar-button_redo fa fa-repeat"
+							  					 title="Повторить"></i>
+						  			</div>
+							  		<div @click="onDeleteNoteButtonClick()"
+							  				 class="note-card__sidebar-button">
+							  				<i class="note-card__sidebar-button-icon note-card__sidebar-button_delete fa fa-trash" title="Удалить заметку"></i>
+						  			</div>
+				  			</div>
+				  			
+				  			<div class="note-card__title-wrapper">
+				  					<h2 v-if="!isTitleOpenToEdit" class="note-card__title">{{ note.title }}</h2>
+						    		<input v-if="isTitleOpenToEdit" v-model="note.title" type="text" class="note-card__title-input"></input>
+						    		<div class="note-card__title-button-wrapper">
+							    			<div v-if="!isTitleOpenToEdit"
+							    				   @click="onEditTitleButtonClick()"
+							    				   class="note-card__title-button">
+							    				 	<i class="note-card__title-button-icon note-card__title-button_edit fa fa-pencil-square" title="Изменить заголовок"></i>
+					    				 	</div>
+							    			<div v-if="isTitleOpenToEdit"
+							    					 @click="onConfirmTitleButtonClick()"
+							    					 class="note-card__title-button">
+							    					<i class="note-card__title-button-icon note-card__title-button_confirm fa fa-check-circle" title="Сохранить"></i>
+						    				</div>
+							    			<div v-if="isTitleOpenToEdit"
+							    					 @click="onCancelTitleButtonClick()"
+							    					 class="note-card__title-button">
+							    					<i class="note-card__title-button-icon note-card__title-button_cancel fa fa-minus-circle" title="Отменить"></i>
+						    				</div>
+						    		</div>
+				  			</div>
+				    		
 			    	</div>
 	    
 		    		<div class="note-card__body">
@@ -53,7 +62,7 @@
 								</ul>
 		    				<div @click="onAddTodoItemButtonClick()"
 		    						 class="note-card__todo-add-item-button">
-		    						<i class="note-card__todo-add-item-button-icon fa fa-plus-circle" data-tooltip="Добавить задачу"></i>
+		    						<i class="note-card__todo-add-item-button-icon fa fa-plus-circle" title="Добавить задачу"></i>
 	    					</div>
 		    		</div>
 	    

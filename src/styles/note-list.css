@@ -57,8 +57,22 @@
   display: flex;
   flex-direction: column;
   height: 100%;
-  padding: 1rem 0;
-  background-color: aqua;
+  background-color: #94f38f;
+  transition: box-shadow 0.3s ease-in;
+}
+
+.note-list__card-wrapper:hover {
+  box-shadow: 0 0 10px #94f38f;
+}
+
+.note-list__card-wrapper:hover .note-list__card-buttons-wrapper {
+  opacity: 1;
+}
+
+
+.note-list__card-header {
+  padding: 1rem 0 2.5rem;
+  background-color: #71f36b;
 }
 
 
@@ -66,6 +80,14 @@
   display: flex;
   justify-content: flex-end;
   padding: 0 0.5rem;
+  opacity: 0;
+  transition: opacity 0.3s ease-in;
+}
+
+@media (max-width: 991px) {
+  .note-list__card-buttons-wrapper {
+    opacity: 1;
+  }
 }
 
 
@@ -84,27 +106,25 @@
 .note-list__note-button-icon {
   font-size: 1.5rem;
   height: 1.5rem;
-  color: gray;
-}
-
-.note-list__note-button-icon:hover {
-  color: black;
+  color: #505050;
   cursor: pointer;
 }
 
-
-.note-list__card-header {
-  padding: 0.5rem 1rem;
+.note-list__note-button-icon:hover {
+  color: #101010;
 }
 
 
 .note-list__card-title {
   margin: 0;
+  color: #101010;
+  padding: 0 2rem;
+  font-style: italic;
 }
 
 
 .note-list__card-body {
-  padding-top: 0.5rem;
+  padding: 2rem 0;
 }
 
 
@@ -120,17 +140,34 @@
   padding: 0.5rem;
 }
 
+.note-list__todo-item:not(:last-child) {
+  border-bottom: 1px solid #505050;
+}
+
 
 .note-list__todo-item-checkbox {
   flex: 0 0 10%;
+  max-width: 10%;
   display: flex;
   justify-content: center;
   align-items: center;
 }
 
 
+.note-list__todo-item-checkbox-icon {
+  font-size: 1.2rem;
+  height: 1.2rem;
+  color: #101010;
+}
+
+
 .note-list__todo-item-text {
   margin: 0;
+  flex: 0 0 90%;
+  max-width: 90%;
+  padding: 0 0.5rem;
+  font-size: 1.2rem;
+  color: #101010;
 }
 
 
@@ -142,11 +179,11 @@
   bottom: 3rem;
   right: 3rem;
   cursor: pointer;
-  color: gray;
+  color: #505050;
 }
 
 .note-list__add-button:hover {
-  color: black;
+  color: #101010;
 }
 
 @media (max-width: 767px) {

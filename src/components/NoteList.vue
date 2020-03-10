@@ -3,19 +3,18 @@
 	    		
 				<div v-for="note in notes" class="note-list__card">
   					<div class="note-list__card-wrapper">
-  							<div class="note-list__card-buttons-wrapper">
-			    					<div @click="onChangeButtonClick(note.id)"
-			    							 class="note-list__note-button">
-			    							<i class="note-list__note-button-icon note-list__note-button-icon_change fa fa-cog" data-tooltip="Изменить заметку"></i>
-		    						</div>
-			    					<div @click="onDeleteButtonClick(note.id)"
-			    							 data-tooltip="Удалить"
-			    							 class="note-list__note-button">
-			    							 <i class="note-list__note-button-icon note-list__note-button-icon_delete fa fa-trash" data-tooltip="Удалить заметку"></i>
-		    						</div>
-			    			</div>
 
 				  			<div class="note-list__card-header">
+						    		<div class="note-list__card-buttons-wrapper">
+					    					<div @click="onChangeButtonClick(note.id)"
+					    							 class="note-list__note-button">
+					    							<i title="Изменить заметку" class="note-list__note-button-icon note-list__note-button-icon_change fa fa-cog"></i>
+				    						</div>
+					    					<div @click="onDeleteButtonClick(note.id)"
+					    							 class="note-list__note-button">
+					    							 <i title="Удалить заметку" class="note-list__note-button-icon note-list__note-button-icon_delete fa fa-trash"></i>
+				    						</div>
+					    			</div>
 						    		<h2 class="note-list__card-title">{{ note.title }}</h2>
 					    	</div>
 			    
@@ -35,7 +34,7 @@
 
 				<div @click="onAddButtonClick()"
 						 class="note-list__add-button">
-						<i class="note-list__add-button-icon fa fa-plus-circle" data-tooltip="Создать заметку"></i>
+						<i class="note-list__add-button-icon fa fa-plus-circle" title="Создать заметку"></i>
 				</div>
 
 				<app-dialog v-if="isDialogVisible"

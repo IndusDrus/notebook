@@ -1,6 +1,13 @@
 .note-card__todo-item {
 	display: flex;
-	padding: 0.5rem 0;
+	padding: 0.5rem;
+	border-bottom: 1px solid #505050;
+}
+
+@media (max-width: 575px) {
+	.note-card__todo-item {
+		padding: 0.5rem 0;
+	}
 }
 
 
@@ -20,26 +27,42 @@
 }
 
 .note-card__todo-item-checkbox-icon_disabled {
-	color: gray;
+	color: #505050;
 }
 
 .note-card__todo-item-checkbox-icon_enabled {
-	color: black;
+	color: #101010;
+}
+
+
+.note-card__text-wrapper {
+	flex: 0 0 90%;
+	max-width: 90%;
+	padding: 0 0.5rem;
+	display: flex;
+	align-items: center;
+}
+
+@media (max-width: 575px) {
+	.note-card__text-wrapper {
+		padding: 0 0 0 0.5rem;
+	}
 }
 
 
 .note-card__todo-text {
-	flex: 0 0 70%;
-	max-width: 70%;
+	flex: 0 0 80%;
+	max-width: 80%;
 	align-self: center;
+	font-size: 1.2rem;
 }
 
 
 .note-card__todo-text-input {
 	font: inherit;
-	font-size: 16px;
-	flex: 0 0 70%;
-	max-width: 70%;
+	font-size: 1.2rem;
+	flex: 0 0 80%;
+	max-width: 80%;
 }
 
 
@@ -62,10 +85,10 @@
 .note-card__todo-item-button-icon {
 	font-size: 1.5rem;
 	height: 1.5rem;
-	color: gray;
+	cursor: pointer;
+	color: #505050;
 }
 
 .note-card__todo-item-button-icon:hover {
-	color: black;
-	cursor: pointer;
+	color: #101010;
 }
