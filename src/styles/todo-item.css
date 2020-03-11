@@ -1,7 +1,7 @@
 .note-card__todo-item {
 	display: flex;
 	padding: 0.5rem;
-	border-bottom: 1px solid #505050;
+	border-bottom: 1px solid #707070;
 }
 
 @media (max-width: 575px) {
@@ -27,7 +27,7 @@
 }
 
 .note-card__todo-item-checkbox-icon_disabled {
-	color: #505050;
+	color: #707070;
 }
 
 .note-card__todo-item-checkbox-icon_enabled {
@@ -55,6 +55,8 @@
 	max-width: 80%;
 	align-self: center;
 	font-size: 1.2rem;
+	word-wrap: break-word;
+  word-break: break-all;
 }
 
 
@@ -86,7 +88,7 @@
 	font-size: 1.5rem;
 	height: 1.5rem;
 	cursor: pointer;
-	color: #505050;
+	color: #707070;
 }
 
 .note-card__todo-item-button-icon:hover {

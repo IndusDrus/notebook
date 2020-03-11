@@ -68,7 +68,7 @@
 }
 
 .note-card__sidebar-button-icon_disabled {
-	color: #505050;
+	color: #707070;
 	cursor: default;
 }
 
@@ -85,6 +85,8 @@
 	flex: 0 0 80%;
 	max-width: 80%;
 	font-style: italic;
+	word-wrap: break-word;
+  word-break: break-all;
 }
 
 
@@ -118,7 +120,7 @@
 .note-card__title-button-icon {
 	font-size: 1.5rem;
 	height: 1.5rem;
-	color: #505050;
+	color: #707070;
 	cursor: pointer;
 }
 
@@ -166,7 +168,7 @@
 .note-card__todo-add-item-button-icon {
 	font-size: 2.3rem;
 	height: 2.3rem;
-	color: #505050;
+	color: #707070;
 	cursor: pointer;
 }
 

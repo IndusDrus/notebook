@@ -56,7 +56,6 @@
 .note-list__card-wrapper {
   display: flex;
   flex-direction: column;
-  height: 100%;
   background-color: #94f38f;
   transition: box-shadow 0.3s ease-in;
 }
@@ -106,7 +105,7 @@
 .note-list__note-button-icon {
   font-size: 1.5rem;
   height: 1.5rem;
-  color: #505050;
+  color: #707070;
   cursor: pointer;
 }
 
@@ -120,6 +119,8 @@
   color: #101010;
   padding: 0 2rem;
   font-style: italic;
+  word-wrap: break-word;
+  word-break: break-all;
 }
 
 
@@ -141,7 +142,7 @@
 }
 
 .note-list__todo-item:not(:last-child) {
-  border-bottom: 1px solid #505050;
+  border-bottom: 1px solid #707070;
 }
 
 
@@ -168,6 +169,8 @@
   padding: 0 0.5rem;
   font-size: 1.2rem;
   color: #101010;
+  word-wrap: break-word;
+  word-break: break-all;
 }
 
 
@@ -179,7 +182,7 @@
   bottom: 3rem;
   right: 3rem;
   cursor: pointer;
-  color: #505050;
+  color: #707070;
 }
 
 .note-list__add-button:hover {

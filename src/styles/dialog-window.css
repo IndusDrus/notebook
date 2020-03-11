@@ -33,6 +33,8 @@
 	font-size: 1.5rem;
 	font-style: italic;
 	color: #101010;
+	word-wrap: break-word;
+  word-break: break-all;
 }
 
 
