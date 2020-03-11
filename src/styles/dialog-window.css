@@ -1,13 +1,19 @@
 .dialog-wrapper {
 	position: fixed;
 	top: 0;
-	bottom: 0;
+	height: 100%;
 	left: 0;
-	right: 0;
+	width: 100%;
 	z-index: 9999;
 	background: rgba(0, 0, 0, 0.7);
+	display: -ms-flexbox;
+	display: -webkit-flex;
 	display: flex;
+	-webkit-justify-content: center;
+	-ms-flex-pack: center;
 	justify-content: center;
+	-webkit-align-items: center;
+  -ms-flex-align: center;
 	align-items: center;
 }
 
@@ -39,7 +45,11 @@
 
 
 .dialog__buttons-wrapper {
+	display: -ms-flexbox;
+	display: -webkit-flex;
 	display: flex;
+	-webkit-justify-content: center;
+	-ms-flex-pack: justify;
 	justify-content: space-between;
 }
 
@@ -51,11 +61,19 @@
 	font-size: 1rem;
 	font-weight: bold;
 	padding: 0.5rem 1rem;
+	-ms-flex: 0 0 40%;
+	-moz-flex: 0 0 40%;
+	-o-flex: 0 0 40%;
+	-webkit-flex: 0 0 40%;
 	flex: 0 0 40%;
 	background-color: #43e73a;
 	color: #101010;
 	border: 1px solid transparent;
 	border-radius: 0.3rem;
+	-webkit-transition: 0.3s ease-in;
+	-moz-transition: 0.3s ease-in;
+	-o-transition: 0.3s ease-in;
+	-ms-transition: 0.3s ease-in;
 	transition: 0.3s ease-in;
 }
 

@@ -25,7 +25,11 @@ body {
 
 .container {
 	position: relative;
+	display: -ms-flexbox;
+	display: -webkit-flex;
 	display: flex;
+	-webkit-justify-content: center;
+	-ms-flex-pack: center;
 	justify-content: center;
 	width: 100%;
   padding-right: 15px;
