@@ -8,24 +8,24 @@
 							  		<div class="note-card__sidebar-button">
 							  				<i v-if="canUndo"
 							  					 @click="onUndoButtonClick()"
-							  					 class="note-card__sidebar-button-icon note-card__sidebar-button_undo fa fa-undo"
+							  					 class="note-card__sidebar-button-icon note-card__sidebar-button_undo icon-undo"
 							  					 title="Отменить"></i>
 					  					 	<i v-else
-							  					 class="note-card__sidebar-button-icon note-card__sidebar-button-icon_disabled note-card__sidebar-button_undo fa fa-undo"
+							  					 class="note-card__sidebar-button-icon note-card__sidebar-button-icon_disabled note-card__sidebar-button_undo icon-undo"
 							  					 title="Отменить"></i>
 						  			</div>
 							  		<div class="note-card__sidebar-button">
 							  				<i v-if="canRedo"
 							  					 @click="onRedoButtonClick()"
-							  					 class="note-card__sidebar-button-icon note-card__sidebar-button_redo fa fa-repeat"
+							  					 class="note-card__sidebar-button-icon note-card__sidebar-button_redo icon-repeat"
 							  					 title="Повторить"></i>
 					  					 	<i v-else
-							  					 class="note-card__sidebar-button-icon note-card__sidebar-button-icon_disabled note-card__sidebar-button_redo fa fa-repeat"
+							  					 class="note-card__sidebar-button-icon note-card__sidebar-button-icon_disabled note-card__sidebar-button_redo icon-repeat"
 							  					 title="Повторить"></i>
 						  			</div>
 							  		<div @click="onDeleteNoteButtonClick()"
 							  				 class="note-card__sidebar-button">
-							  				<i class="note-card__sidebar-button-icon note-card__sidebar-button_delete fa fa-trash" title="Удалить заметку"></i>
+							  				<i class="note-card__sidebar-button-icon note-card__sidebar-button_delete icon-trash" title="Удалить заметку"></i>
 						  			</div>
 				  			</div>
 				  			
@@ -36,17 +36,17 @@
 							    			<div v-if="!isTitleOpenToEdit"
 							    				   @click="onEditTitleButtonClick()"
 							    				   class="note-card__title-button">
-							    				 	<i class="note-card__title-button-icon note-card__title-button_edit fa fa-pencil-square" title="Изменить заголовок"></i>
+							    				 	<i class="note-card__title-button-icon note-card__title-button_edit icon-pencil" title="Изменить заголовок"></i>
 					    				 	</div>
 							    			<div v-if="isTitleOpenToEdit"
 							    					 @click="onConfirmTitleButtonClick()"
 							    					 class="note-card__title-button">
-							    					<i class="note-card__title-button-icon note-card__title-button_confirm fa fa-check-circle" title="Сохранить"></i>
+							    					<i class="note-card__title-button-icon note-card__title-button_confirm icon-check-circle" title="Сохранить"></i>
 						    				</div>
 							    			<div v-if="isTitleOpenToEdit"
 							    					 @click="onCancelTitleButtonClick()"
 							    					 class="note-card__title-button">
-							    					<i class="note-card__title-button-icon note-card__title-button_cancel fa fa-minus-circle" title="Отменить"></i>
+							    					<i class="note-card__title-button-icon note-card__title-button_cancel icon-minus-circle" title="Отменить"></i>
 						    				</div>
 						    		</div>
 				  			</div>
@@ -62,7 +62,7 @@
 								</ul>
 		    				<div @click="onAddTodoItemButtonClick()"
 		    						 class="note-card__todo-add-item-button">
-		    						<i class="note-card__todo-add-item-button-icon fa fa-plus-circle" title="Добавить задачу"></i>
+		    						<i class="note-card__todo-add-item-button-icon icon-plus-circle" title="Добавить задачу"></i>
 	    					</div>
 		    		</div>
 	    

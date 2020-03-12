@@ -1,42 +1,42 @@
 .note-wrapper {
-	-ms-flex: 0 0 50%;
-	-moz-flex: 0 0 50%;
-	-o-flex: 0 0 50%;
-	-webkit-flex: 0 0 50%;
-	flex: 0 0 50%;
+	-ms-flex: 0 1 50%;
+	-moz-flex: 0 1 50%;
+	-o-flex: 0 1 50%;
+	-webkit-flex: 0 1 50%;
+	flex: 0 1 50%;
 	max-width: 50%;
 	padding: 2rem;
 }
 
 @media (max-width: 991px) {
 	.note-wrapper {
-		-ms-flex: 0 0 70%;
-		-moz-flex: 0 0 70%;
-		-o-flex: 0 0 70%;
-		-webkit-flex: 0 0 70%;
-		flex: 0 0 70%;
+		-ms-flex: 0 1 70%;
+		-moz-flex: 0 1 70%;
+		-o-flex: 0 1 70%;
+		-webkit-flex: 0 1 70%;
+		flex: 0 1 70%;
 		max-width: 70%;
 	}
 }
 
 @media (max-width: 767px) {
 	.note-wrapper {
-		-ms-flex: 0 0 80%;
-		-moz-flex: 0 0 80%;
-		-o-flex: 0 0 80%;
-		-webkit-flex: 0 0 80%;
-		flex: 0 0 80%;
+		-ms-flex: 0 1 80%;
+		-moz-flex: 0 1 80%;
+		-o-flex: 0 1 80%;
+		-webkit-flex: 0 1 80%;
+		flex: 0 1 80%;
 		max-width: 80%;
 	}
 }
 
 @media (max-width: 575px) {
 	.note-wrapper {
-		-ms-flex: 0 0 100%;
-		-moz-flex: 0 0 100%;
-		-o-flex: 0 0 100%;
-		-webkit-flex: 0 0 100%;
-		flex: 0 0 100%;
+		-ms-flex: 0 1 100%;
+		-moz-flex: 0 1 100%;
+		-o-flex: 0 1 100%;
+		-webkit-flex: 0 1 100%;
+		flex: 0 1 100%;
 		max-width: 100%;
 	}
 }
@@ -75,11 +75,11 @@
 
 
 .note-card__sidebar-button {
-	-ms-flex: 0 0 10%;
-	-moz-flex: 0 0 10%;
-	-o-flex: 0 0 10%;
-	-webkit-flex: 0 0 10%;
-	flex: 0 0 10%;
+	-ms-flex: 0 1 10%;
+	-moz-flex: 0 1 10%;
+	-o-flex: 0 1 10%;
+	-webkit-flex: 0 1 10%;
+	flex: 0 1 10%;
 	max-width: 10%;
 	display: -ms-flexbox;
 	display: -webkit-flex;
@@ -120,15 +120,15 @@
 
 .note-card__title {
 	margin: 0;
-	-ms-flex: 0 0 80%;
-	-moz-flex: 0 0 80%;
-	-o-flex: 0 0 80%;
-	-webkit-flex: 0 0 80%;
-	flex: 0 0 80%;
+	-ms-flex: 0 1 80%;
+	-moz-flex: 0 1 80%;
+	-o-flex: 0 1 80%;
+	-webkit-flex: 0 1 80%;
+	flex: 0 1 80%;
 	max-width: 80%;
 	font-style: italic;
 	word-wrap: break-word;
-  word-break: break-all;
+  word-break: break-word;
 }
 
 
@@ -136,21 +136,21 @@
 	font-family: 'PlayfairDisplay';
 	font-size: 24px;
 	font-style: italic;
-	-ms-flex: 0 0 80%;
-	-moz-flex: 0 0 80%;
-	-o-flex: 0 0 80%;
-	-webkit-flex: 0 0 80%;
-	flex: 0 0 80%;
+	-ms-flex: 0 1 80%;
+	-moz-flex: 0 1 80%;
+	-o-flex: 0 1 80%;
+	-webkit-flex: 0 1 80%;
+	flex: 0 1 80%;
 	max-width: 80%;
 }
 
 
 .note-card__title-button-wrapper {
-	-ms-flex: 0 0 20%;
-	-moz-flex: 0 0 20%;
-	-o-flex: 0 0 20%;
-	-webkit-flex: 0 0 20%;
-	flex: 0 0 20%;
+	-ms-flex: 0 1 20%;
+	-moz-flex: 0 1 20%;
+	-o-flex: 0 1 20%;
+	-webkit-flex: 0 1 20%;
+	flex: 0 1 20%;
 	max-width: 20%;
 	display: -ms-flexbox;
 	display: -webkit-flex;
@@ -165,11 +165,11 @@
 
 
 .note-card__title-button {
-	-ms-flex: 0 0 50%;
-	-moz-flex: 0 0 50%;
-	-o-flex: 0 0 50%;
-	-webkit-flex: 0 0 50%;
-	flex: 0 0 50%;
+	-ms-flex: 0 1 50%;
+	-moz-flex: 0 1 50%;
+	-o-flex: 0 1 50%;
+	-webkit-flex: 0 1 50%;
+	flex: 0 1 50%;
 	max-width: 50%;
 	display: -ms-flexbox;
 	display: -webkit-flex;
@@ -255,9 +255,12 @@
 	display: -ms-flexbox;
 	display: -webkit-flex;
 	display: flex;
-	-webkit-justify-content: center;
+	-webkit-justify-content: space-between;
 	-ms-flex-pack: justify;
 	justify-content: space-between;
+	-webkit-flex-wrap: wrap;
+  -ms-flex-wrap: wrap;
+  flex-wrap: wrap;
 	padding: 0 1.5rem 1.5rem;
 }
 
@@ -277,11 +280,11 @@
 	font-weight: bold;
 	padding: 0.5rem 1rem;
 	margin: 0.5rem;
-	-ms-flex: 0 0 40%;
-	-moz-flex: 0 0 40%;
-	-o-flex: 0 0 40%;
-	-webkit-flex: 0 0 40%;
-	flex: 0 0 40%;
+	-ms-flex: 0 1 40%;
+	-moz-flex: 0 1 40%;
+	-o-flex: 0 1 40%;
+	-webkit-flex: 0 1 40%;
+	flex: 0 1 40%;
 	background-color: #43e73a;
 	color: #101010;
 	border: 1px solid transparent;

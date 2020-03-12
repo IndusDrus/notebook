@@ -8,11 +8,11 @@
 						    		<div class="note-list__card-buttons-wrapper">
 					    					<div @click="onChangeButtonClick(note.id)"
 					    							 class="note-list__note-button">
-					    							<i title="Изменить заметку" class="note-list__note-button-icon note-list__note-button-icon_change fa fa-cog"></i>
+					    							<i title="Изменить заметку" class="note-list__note-button-icon note-list__note-button-icon_change icon-cog"></i>
 				    						</div>
 					    					<div @click="onDeleteButtonClick(note.id)"
 					    							 class="note-list__note-button">
-					    							 <i title="Удалить заметку" class="note-list__note-button-icon note-list__note-button-icon_delete fa fa-trash"></i>
+					    							 <i title="Удалить заметку" class="note-list__note-button-icon note-list__note-button-icon_delete icon-trash"></i>
 				    						</div>
 					    			</div>
 						    		<h2 class="note-list__card-title">{{ note.title }}</h2>
@@ -22,7 +22,7 @@
 				    				<ul class="note-list__todo-list">
 		    								<li v-for="todoItem in note.todoList.slice(0, countTodoItemsOnNote)" class="note-list__todo-item">
 		    										<div class="note-list__todo-item-checkbox">
-		    												<i v-if="todoItem.checked" class="note-list__todo-item-checkbox-icon fa fa-check-square"></i>
+		    												<i v-if="todoItem.checked" class="note-list__todo-item-checkbox-icon icon-check-square"></i>
 		    										</div>
 		    										<p class="note-list__todo-item-text">{{ todoItem.text }}</p>
 							    			</li>
@@ -34,7 +34,7 @@
 
 				<div @click="onAddButtonClick()"
 						 class="note-list__add-button">
-						<i class="note-list__add-button-icon fa fa-plus-circle" title="Создать заметку"></i>
+						<i class="note-list__add-button-icon icon-plus-circle" title="Создать заметку"></i>
 				</div>
 
 				<app-dialog v-if="isDialogVisible"

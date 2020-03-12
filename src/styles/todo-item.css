@@ -14,11 +14,11 @@
 
 
 .note-card__todo-item-checkbox {
-	-ms-flex: 0 0 10%;
-	-moz-flex: 0 0 10%;
-	-o-flex: 0 0 10%;
-	-webkit-flex: 0 0 10%;
-	flex: 0 0 10%;
+	-ms-flex: 0 1 10%;
+	-moz-flex: 0 1 10%;
+	-o-flex: 0 1 10%;
+	-webkit-flex: 0 1 10%;
+	flex: 0 1 10%;
 	max-width: 10%;
 	display: -ms-flexbox;
 	display: -webkit-flex;
@@ -48,11 +48,11 @@
 
 
 .note-card__text-wrapper {
-	-ms-flex: 0 0 90%;
-	-moz-flex: 0 0 90%;
-	-o-flex: 0 0 90%;
-	-webkit-flex: 0 0 90%;
-	flex: 0 0 90%;
+	-ms-flex: 0 1 90%;
+	-moz-flex: 0 1 90%;
+	-o-flex: 0 1 90%;
+	-webkit-flex: 0 1 90%;
+	flex: 0 1 90%;
 	max-width: 90%;
 	padding: 0 0.5rem;
 	display: -ms-flexbox;
@@ -71,11 +71,11 @@
 
 
 .note-card__todo-text {
-	-ms-flex: 0 0 80%;
-	-moz-flex: 0 0 80%;
-	-o-flex: 0 0 80%;
-	-webkit-flex: 0 0 80%;
-	flex: 0 0 80%;
+	-ms-flex: 0 1 80%;
+	-moz-flex: 0 1 80%;
+	-o-flex: 0 1 80%;
+	-webkit-flex: 0 1 80%;
+	flex: 0 1 80%;
 	max-width: 80%;
 	-webkit-align-self: center;
 	-ms-flex-item-align: center;
@@ -83,28 +83,28 @@
 	align-self: center;
 	font-size: 1.2rem;
 	word-wrap: break-word;
-  word-break: break-all;
+  word-break: break-word;
 }
 
 
 .note-card__todo-text-input {
 	font: inherit;
 	font-size: 1.2rem;
-	-ms-flex: 0 0 80%;
-	-moz-flex: 0 0 80%;
-	-o-flex: 0 0 80%;
-	-webkit-flex: 0 0 80%;
-	flex: 0 0 80%;
+	-ms-flex: 0 1 80%;
+	-moz-flex: 0 1 80%;
+	-o-flex: 0 1 80%;
+	-webkit-flex: 0 1 80%;
+	flex: 0 1 80%;
 	max-width: 80%;
 }
 
 
 .note-card__todo-item-button-wrapper {
-	-ms-flex: 0 0 20%;
-	-moz-flex: 0 0 20%;
-	-o-flex: 0 0 20%;
-	-webkit-flex: 0 0 20%;
-	flex: 0 0 20%;
+	-ms-flex: 0 1 20%;
+	-moz-flex: 0 1 20%;
+	-o-flex: 0 1 20%;
+	-webkit-flex: 0 1 20%;
+	flex: 0 1 20%;
 	max-width: 20%;
 	display: -ms-flexbox;
 	display: -webkit-flex;
@@ -113,11 +113,11 @@
 
 
 .note-card__todo-item-button {
-	-ms-flex: 0 0 50%;
-	-moz-flex: 0 0 50%;
-	-o-flex: 0 0 50%;
-	-webkit-flex: 0 0 50%;
-	flex: 0 0 50%;
+	-ms-flex: 0 1 50%;
+	-moz-flex: 0 1 50%;
+	-o-flex: 0 1 50%;
+	-webkit-flex: 0 1 50%;
+	flex: 0 1 50%;
 	max-width: 50%;
 	display: -ms-flexbox;
 	display: -webkit-flex;

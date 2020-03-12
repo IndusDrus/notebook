@@ -23,44 +23,44 @@
 
 
 .note-list__card {
-  -ms-flex: 0 0 33.333333%;
-  -moz-flex: 0 0 33.333333%;
-  -o-flex: 0 0 33.333333%;
-  -webkit-flex: 0 0 33.333333%;
-  flex: 0 0 33.333333%;
+  -ms-flex: 0 1 33.333333%;
+  -moz-flex: 0 1 33.333333%;
+  -o-flex: 0 1 33.333333%;
+  -webkit-flex: 0 1 33.333333%;
+  flex: 0 1 33.333333%;
   max-width: 33.333333%;
   padding: 15px;
 }
 
 @media (max-width: 991px) {
   .note-list__card {
-    -ms-flex: 0 0 50%;
-    -moz-flex: 0 0 50%;
-    -o-flex: 0 0 50%;
-    -webkit-flex: 0 0 50%;
-    flex: 0 0 50%;
+    -ms-flex: 0 1 50%;
+    -moz-flex: 0 1 50%;
+    -o-flex: 0 1 50%;
+    -webkit-flex: 0 1 50%;
+    flex: 0 1 50%;
     max-width: 50%;
   }
 }
 
 @media (max-width: 767px) {
   .note-list__card {
-    -ms-flex: 0 0 70%;
-    -moz-flex: 0 0 70%;
-    -o-flex: 0 0 70%;
-    -webkit-flex: 0 0 70%;
-    flex: 0 0 70%;
+    -ms-flex: 0 1 70%;
+    -moz-flex: 0 1 70%;
+    -o-flex: 0 1 70%;
+    -webkit-flex: 0 1 70%;
+    flex: 0 1 70%;
     max-width: 70%;
   }
 }
 
 @media (max-width: 575px) {
   .note-list__card {
-    -ms-flex: 0 0 100%;
-    -moz-flex: 0 0 100%;
-    -o-flex: 0 0 100%;
-    -webkit-flex: 0 0 100%;
-    flex: 0 0 100%;
+    -ms-flex: 0 1 100%;
+    -moz-flex: 0 1 100%;
+    -o-flex: 0 1 100%;
+    -webkit-flex: 0 1 100%;
+    flex: 0 1 100%;
     max-width: 100%;
   }
 }
@@ -126,11 +126,11 @@
   -ms-flex-pack: center;
   justify-content: center;
   padding: 0 0.5rem;
-  -ms-flex: 0 0 12%;
-  -moz-flex: 0 0 12%;
-  -o-flex: 0 0 12%;
-  -webkit-flex: 0 0 12%;
-  flex: 0 0 12%;
+  -ms-flex: 0 1 12%;
+  -moz-flex: 0 1 12%;
+  -o-flex: 0 1 12%;
+  -webkit-flex: 0 1 12%;
+  flex: 0 1 12%;
   max-width: 12%;
 }
 
@@ -153,7 +153,7 @@
   padding: 0 2rem;
   font-style: italic;
   word-wrap: break-word;
-  word-break: break-all;
+  word-break: break-word;
 }
 
 
@@ -182,11 +182,11 @@
 
 
 .note-list__todo-item-checkbox {
-  -ms-flex: 0 0 10%;
-  -moz-flex: 0 0 10%;
-  -o-flex: 0 0 10%;
-  -webkit-flex: 0 0 10%;
-  flex: 0 0 10%;
+  -ms-flex: 0 1 10%;
+  -moz-flex: 0 1 10%;
+  -o-flex: 0 1 10%;
+  -webkit-flex: 0 1 10%;
+  flex: 0 1 10%;
   max-width: 10%;
   display: -ms-flexbox;
   display: -webkit-flex;
@@ -209,17 +209,17 @@
 
 .note-list__todo-item-text {
   margin: 0;
-  -ms-flex: 0 0 90%;
-  -moz-flex: 0 0 90%;
-  -o-flex: 0 0 90%;
-  -webkit-flex: 0 0 90%;
-  flex: 0 0 90%;
+  -ms-flex: 0 1 90%;
+  -moz-flex: 0 1 90%;
+  -o-flex: 0 1 90%;
+  -webkit-flex: 0 1 90%;
+  flex: 0 1 90%;
   max-width: 90%;
   padding: 0 0.5rem;
   font-size: 1.2rem;
   color: #101010;
   word-wrap: break-word;
-  word-break: break-all;
+  word-break: break-word;
 }
 
 
